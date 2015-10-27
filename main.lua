@@ -11,9 +11,9 @@ function printArray(arr)
 	end
 end
 -- Device class, mother of all
-Device = {id = "N/A"}
+local Device = {id = "N/A"}
 function Device:new(o, id, number, obj, category, shortName)
-	ob = o or {}
+	local ob = o or {}
 	setmetatable(ob, self)
 	self.__index = self
 	self.id = id or "N/A"
@@ -29,10 +29,10 @@ function Device:getCategory()
 end
 
 --Reactor class from Device
-Reactor = Device:new()
+local Reactor = Device:new()
 --Reactor = {}
 function Reactor:new(o, id)
-	ob = o or Device:new(o,id)
+	local ob = o or Device:new(o,id)
 	setmetatable(ob, self)
 	self.__index = self
 	--print("R ",id)
@@ -85,9 +85,9 @@ function Reactor:getYelloriumConsumption()
 end
 
 --Monitor class
-Monitor = Device:new()
+local  Monitor = Device:new()
 function Monitor:new(o, id, width, height)
-	ob = o or Device:new(o, id)
+	local ob = o or Device:new(o, id)
 	setmetatable(ob, self)
 	self.__index = self
 	--print("M ",id)
@@ -135,9 +135,9 @@ end
 
 -- Turbine Class
 
-Turbine = Device:new()
+local Turbine = Device:new()
 function Turbine:new(o, id)
-	ob = o or Device:new(o, id)
+	local ob = o or Device:new(o, id)
 	setmetatable(ob, self)
 	self.__index = self
 	--print("T ",id)
@@ -184,9 +184,9 @@ function Turbine:setOffline()
 end
 
 --Capacitor class
-Capacitor = Device:new()
+local Capacitor = Device:new()
 function Capacitor:new(o, id, blockCount, blockStore)
-	ob = o or Device:new(o, id)
+	local ob = o or Device:new(o, id)
 	setmetatable(ob, self)
 	self.__index = self
 	--print("C ",id)
@@ -215,9 +215,9 @@ function Capacitor:getFlow()
 end
 
 --Controller class with some Vytutas mineral water
-Controller = { id = "" }
+local Controller = { id = "" }
 function Controller:new(o, optimalRPM, optimalRodPercent, minTemp, maxTemp, minStoredPercent, maxStoredPercent, yelloriumEmitterLevel, controlledDevices, countByType, liveSettings)
-	ob = o or {}
+	local ob = o or {}
 	setmetatable(ob, self)
 	self.__index = self
 	self.optimalRPM = optimalRPM or 1870
@@ -399,7 +399,7 @@ function Controller:listenToPalm()
 end
 
 function Controller:getMonitors()
-	monitors = {}
+	local monitors = {}
 	for i, v in pairs(controlledDevices) do
 		if v:getCategory() == "monitor" then
 			table.insert(monitors, v)
@@ -409,9 +409,9 @@ function Controller:getMonitors()
 end
 
 --View
-View = { id = "" }
+local View = { id = "" }
 function View:new(o, monitors, termMon, reactorMon, turbineMon)
-	ob = o or {}
+	local ob = o or {}
 	setmetatable(o, self)
 	self.__index = self
 	self.monitors = monitors or {}
