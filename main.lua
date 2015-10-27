@@ -14,7 +14,7 @@ end
 local Device = {id = "N/A"}
 function Device:new(o, id, number, obj, category, shortName)
 	local ob = o or {}
-	setmetatable(ob, self)
+	setmetatable(ob, Device)
 	self.__index = self
 	self.id = id or "N/A"
 	self.number = number or "N/A"
@@ -33,7 +33,7 @@ local Reactor = Device:new()
 --Reactor = {}
 function Reactor:new(o, id)
 	local ob = o or Device:new(o,id)
-	setmetatable(ob, self)
+	setmetatable(ob, Reactor)
 	self.__index = self
 	--print("R ",id)
 	self.obj = peripheral.wrap(id)
@@ -88,7 +88,7 @@ end
 local  Monitor = Device:new()
 function Monitor:new(o, id, width, height)
 	local ob = o or Device:new(o, id)
-	setmetatable(ob, self)
+	setmetatable(ob, Monitor)
 	self.__index = self
 	--print("M ",id)
 	self.obj = peripheral.wrap(id)
@@ -138,7 +138,7 @@ end
 local Turbine = Device:new()
 function Turbine:new(o, id)
 	local ob = o or Device:new(o, id)
-	setmetatable(ob, self)
+	setmetatable(ob, Turbine)
 	self.__index = self
 	--print("T ",id)
 	self.obj = peripheral.wrap(id)
@@ -187,7 +187,7 @@ end
 local Capacitor = Device:new()
 function Capacitor:new(o, id, blockCount, blockStore)
 	local ob = o or Device:new(o, id)
-	setmetatable(ob, self)
+	setmetatable(ob, Capacitor)
 	self.__index = self
 	--print("C ",id)
 	self.obj = peripheral.wrap(id)
@@ -218,7 +218,7 @@ end
 local Controller = { id = "" }
 function Controller:new(o, optimalRPM, optimalRodPercent, minTemp, maxTemp, minStoredPercent, maxStoredPercent, yelloriumEmitterLevel, controlledDevices, countByType, liveSettings)
 	local ob = o or {}
-	setmetatable(ob, self)
+	setmetatable(ob, Controller)
 	self.__index = self
 	self.optimalRPM = optimalRPM or 1870
 	self.optimalRodPercent = optimalRodPercent or 40
@@ -412,7 +412,7 @@ end
 local View = { id = "" }
 function View:new(o, monitors, termMon, reactorMon, turbineMon)
 	local ob = o or {}
-	setmetatable(o, self)
+	setmetatable(ob, View)
 	self.__index = self
 	self.monitors = monitors or {}
 	self.termMon = termMon or self:setTermMon()
